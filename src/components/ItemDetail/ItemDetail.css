@@ -1,0 +1,64 @@
+.CardItemDetail {
+    width: 500px;
+    padding: 30px;
+    margin: 30px;
+    font-size: 16px; /* aumenté el tamaño de fuente */
+    background-color: papayawhip;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+  }
+  
+  .ContainerItem {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* añadí una sombra para dar profundidad */
+  }
+  
+  .ItemHeader {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; /* añadí un margen inferior para separarlo del resto de contenido */
+  }
+  
+  .Info {
+    font-size: 14px; /* aumenté el tamaño de fuente */
+    display: flex;
+    justify-content: space-between; /* cambié "space-around" por "space-between" para que el espacio sea más uniforme */
+    margin-bottom: 10px; /* añadí un margen inferior para separarlo del resto de contenido */
+  }
+  
+  .Button {
+    padding: 12px;
+    font-size: 14px; /* aumenté el tamaño de fuente */
+    background: red;
+    border-radius: 8px;
+    flex: none;
+    display: flex;
+    order: 1;
+    align-self: center;
+    flex-grow: 0;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    transition: background-color 0.3s ease; /* añadí una transición suave al color de fondo */
+  }
+  
+  .Button:hover {
+    background-color: darkred; /* cambia el color de fondo al hacer hover */
+  }
+  
+  .ItemImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px; /* añadí un borde redondeado a la imagen */
+    margin-right: 20px; /* añadí un margen derecho para separarlo del resto de contenido */
+  }
+  
