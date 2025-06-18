@@ -1,64 +1,133 @@
+/* Estilos para el contenedor principal */
+.ItemDetail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 80vh;
+  background-color: #f8f9fa;
+}
+
+/* Estilos para la tarjeta de producto */
 .CardItemDetail {
-    width: 500px;
-    padding: 30px;
-    margin: 30px;
-    font-size: 16px; /* aumenté el tamaño de fuente */
-    background-color: papayawhip;
-    border: 1px solid #e1e1e1;
-    border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.CardItemDetail:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Estilos para el header */
+.ItemHeader {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.ItemHeader h2 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para la información del producto */
+.ProductInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ProductImage {
+  flex: 1;
+  min-width: 300px;
+}
+
+.ProductImage img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.ProductDetails {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ProductPrice {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #3182ce;
+  margin: 1rem 0;
+}
+
+.ProductCategory {
+  display: inline-block;
+  background-color: #edf2f7;
+  color: #4a5568;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.ProductDescription {
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilos para el botón */
+.Button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #3182ce;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.Button:hover {
+  background-color: #2c5282;
+  transform: translateY(-2px);
+}
+
+/* Estilos para el footer */
+.ItemFooter {
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eaeaea;
+  margin-top: 1.5rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .CardItemDetail {
+    padding: 1.5rem;
   }
   
-  .ContainerItem {
-    display: flex;
+  .ProductInfo {
     flex-direction: column;
-    margin-bottom: 10px;
-    border-radius: 25px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* añadí una sombra para dar profundidad */
+    gap: 1.5rem;
   }
-  
-  .ItemHeader {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px; /* añadí un margen inferior para separarlo del resto de contenido */
-  }
-  
-  .Info {
-    font-size: 14px; /* aumenté el tamaño de fuente */
-    display: flex;
-    justify-content: space-between; /* cambié "space-around" por "space-between" para que el espacio sea más uniforme */
-    margin-bottom: 10px; /* añadí un margen inferior para separarlo del resto de contenido */
-  }
-  
-  .Button {
-    padding: 12px;
-    font-size: 14px; /* aumenté el tamaño de fuente */
-    background: red;
-    border-radius: 8px;
-    flex: none;
-    display: flex;
-    order: 1;
-    align-self: center;
-    flex-grow: 0;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: #FFFFFF;
-    border: none;
-    cursor: pointer;
-    outline: inherit;
-    transition: background-color 0.3s ease; /* añadí una transición suave al color de fondo */
-  }
-  
-  .Button:hover {
-    background-color: darkred; /* cambia el color de fondo al hacer hover */
-  }
-  
-  .ItemImg {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px; /* añadí un borde redondeado a la imagen */
-    margin-right: 20px; /* añadí un margen derecho para separarlo del resto de contenido */
-  }
-  
+}

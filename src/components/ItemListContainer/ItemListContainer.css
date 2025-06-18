@@ -1,21 +1,143 @@
 .ItemListContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  min-height: 80vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  position: relative;
+}
+
+.ItemListContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="grain" width="100" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="%23ffffff" opacity="0.1"/><circle cx="40" cy="5" r="0.3" fill="%23ffffff" opacity="0.1"/><circle cx="70" cy="15" r="0.4" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="20" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ItemListContainer > * {
+  position: relative;
+  z-index: 2;
+}
+
+.ItemListContainer h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  position: relative;
+  animation: slideInDown 0.8s ease-out;
+}
+
+.ItemListContainer h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+  animation: expandWidth 1s ease-out 0.5s both;
+}
+
+/* Animación del título */
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+/* Estado de carga mejorado */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 2rem;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(102, 126, 234, 0.2);
+  border-left: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  color: #667eea;
+  font-weight: 600;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .ItemListContainer {
+    margin-top: 1rem;
+    padding: 0 1rem;
   }
   
-  h1 {
-    font-size: 36px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 50px;
+  .ItemListContainer h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
   }
   
-  @media screen and (max-width: 768px) {
-    h1 {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
+  .ItemListContainer h1::after {
+    width: 80px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ItemListContainer h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
   
+  .ItemListContainer h1::after {
+    width: 60px;
+  }
+  
+  .loading-text {
+    font-size: 1.2rem;
+  }
+}

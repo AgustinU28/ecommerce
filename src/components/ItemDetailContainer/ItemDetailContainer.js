@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../services/firebase/firebaseConfig'
+import './ItemDetailContainer.css';
+
 
 const ItemDetailContainer = ({setCart}) => {
     const [product , setProduct] = useState({})
@@ -29,7 +31,8 @@ const ItemDetailContainer = ({setCart}) => {
     }, [productId])
     
     return (
-        <div style={{display: 'flex', justifyContent:'center', marginTop: 20, fontSize: '1.5rem', minHeight:'80vh'}}>
+        <div className="item-detail-container">
+
             { <>
                 {loading && <span >Loading...</span>}
                 {loading &&  null}

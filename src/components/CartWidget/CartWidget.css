@@ -1,24 +1,144 @@
-.CartWidget {
-    width: auto;
-    padding: 12px;
-    font-size: 8px;
-    background: yellow;
-    border-radius: 8px;
-    flex: none;
-    display: flex;
-    order: 1;
-    align-self: center;
-    flex-grow: 0;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    border: none;
-    border-style: none;
-    cursor: pointer;
-    outline: inherit;
-    font-size: medium;
+.cartWidget {
+  position: relative;
+  z-index: 100;
 }
 
-.CartImg {
-    margin-right: 10px;
+.logoCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  color: #2d3436;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 8px 25px rgba(253, 203, 110, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  gap: 0.5rem;
+}
+
+.logoCart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+}
+
+.logoCart:hover::before {
+  left: 100%;
+}
+
+.logoCart:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(253, 203, 110, 0.6);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.logoCart img {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.logoCart:hover img {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.cart-count {
+  background: linear-gradient(135deg, #e17055, #d63031);
+  color: white;
+  border-radius: 50%;
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(214, 48, 49, 0.4);
+  animation: pulse 2s infinite;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(214, 48, 49, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(214, 48, 49, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(214, 48, 49, 0.4);
+  }
+}
+
+/* Estado cuando el carrito está vacío */
+.logoCart[data-empty="true"] .cart-count {
+  display: none;
+}
+
+/* Animación de entrada */
+.cartWidget {
+  animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .logoCart {
+    padding: 0.6rem 1rem;
+    border-radius: 40px;
+  }
+  
+  .logoCart img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .cart-count {
+    min-width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    top: -6px;
+    right: -6px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .logoCart {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .logoCart img {
+    width: 20px;
+    height: 20px;
+  }
 }
