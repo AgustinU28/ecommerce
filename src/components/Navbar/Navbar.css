@@ -1,15 +1,20 @@
 /* Navbar principal */
 .NavBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  height: 70px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.NavBar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 70px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Logo/Título */
@@ -94,41 +99,187 @@
   background: linear-gradient(135deg, #fdcb6e, #f39c12);
 }
 
-/* Estilos para pantallas pequeñas */
-@media (max-width: 768px) {
-  .NavBar {
-    padding: 0 1rem;
-    height: auto;
-    min-height: 70px;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .NavBar h3 {
-    font-size: 1.2rem;
+/* Botón hamburguesa */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger span:nth-child(1) {
+  margin-bottom: 6px;
+}
+
+.hamburger span:nth-child(2) {
+  margin-bottom: 6px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* CartWidget visibility */
+.CartWidget-mobile {
+  display: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.CartWidget-desktop {
+  display: block;
+}
+
+/* Estilos para tablets */
+@media (max-width: 968px) {
+  .NavBar-container {
+    padding: 0 1.5rem;
   }
   
   .Categories {
-    flex-wrap: wrap;
     gap: 0.25rem;
-    justify-content: center;
-    width: 100%;
   }
   
   .Option,
   .ActiveOption {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 480px) {
-  .NavBar {
-    flex-direction: column;
-    padding: 1rem;
+/* Estilos para móviles - 768px y menos */
+@media (max-width: 768px) {
+  .NavBar-container {
+    padding: 0 1rem;
+    position: relative;
+  }
+  
+  .NavBar h3 {
+    font-size: 1.3rem;
+  }
+  
+  .hamburger {
+    display: flex;
   }
   
   .Categories {
-    margin-top: 0.5rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .Categories-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .Option,
+  .ActiveOption {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+  }
+  
+  .CartWidget-mobile {
+    display: block;
+  }
+  
+  .CartWidget-desktop {
+    display: none;
+  }
+}
+
+/* Estilos para móviles pequeños */
+@media (max-width: 480px) {
+  .NavBar-container {
+    padding: 0 0.75rem;
+  }
+  
+  .NavBar h3 {
+    font-size: 1.1rem;
+  }
+  
+  .Categories {
+    padding: 0.75rem;
+  }
+  
+  .Option,
+  .ActiveOption {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Overlay para cerrar menú al hacer click fuera */
+@media (max-width: 768px) {
+  .Categories-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+  }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .Option,
+  .ActiveOption,
+  .hamburger span,
+  .Categories {
+    transition: none;
+  }
+}
+
+/* Hover states para dispositivos con cursor */
+@media (hover: hover) {
+  .Option:hover,
+  .ActiveOption:hover {
+    transform: translateY(-2px);
+  }
+  
+  .NavBar h3:hover {
+    transform: scale(1.05);
   }
 }
