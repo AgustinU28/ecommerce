@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import ItemCount from "../ItemCount/ItemCount"
 import { CartContext } from "../../context/CartContext"
-import { NotificationContext } from '../../notification/NotificationService'
+import { useNotification } from '../../notification/NotificationService'
 import './ItemDetail.css'
 
 const ItemDetail = ({ id, name, category, img, price, stock, description }) => {
-    const [quantity, setQuantity] = useState(0)
     const { addItem, isInCart } = useContext(CartContext)
-    const setNotification = useContext(NotificationContext)
+    const { showNotification } = useNotification()
 
     const handleOnAdd = (quantity) => {
-        setQuantity(parseInt(quantity))   
-        setNotification(`Se agregó correctamente ${quantity} ${name}`, 5)        
+        showNotification(`Se agregó correctamente ${quantity} ${name}`, 'success', 5)        
         addItem({ id, name, price, quantity, img })
     }
 
