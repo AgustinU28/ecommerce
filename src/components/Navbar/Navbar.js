@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [search, setSearch] = useState('')
   const navigate = useNavigate()
 
   const toggleMenu = () => {
@@ -16,11 +17,40 @@ const NavBar = () => {
     setIsMenuOpen(false)
   }
 
+  const handleSearch = (event) => {
+    event.preventDefault()
+    const term = search.trim()
+    if (term) {
+      navigate(`/search?q=${encodeURIComponent(term)}`)
+      setSearch('')
+      closeMenu()
+    }
+  }
+
   return (
     <nav className="NavBar">
       <div className="NavBar-container">
-        <h3 onClick={() => navigate('/')}>Tienda de Tecnologia</h3>
-        
+        <h3 onClick={() => navigate('/')}>
+          <span className="NavBar-logo-icon">⚡</span> TechStore
+        </h3>
+
+        {/* Buscador (desktop) */}
+        <form className="NavBar-search desktop" onSubmit={handleSearch} role="search">
+          <input
+            type="search"
+            placeholder="Buscar productos..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            aria-label="Buscar productos"
+          />
+          <button type="submit" aria-label="Buscar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </button>
+        </form>
+
         {/* Botón hamburguesa */}
         <button 
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
@@ -34,7 +64,24 @@ const NavBar = () => {
 
         {/* Menú de navegación */}
         <div className={`Categories ${isMenuOpen ? 'Categories-open' : ''}`}>
-          <NavLink 
+          {/* Buscador (móvil) */}
+          <form className="NavBar-search mobile" onSubmit={handleSearch} role="search">
+            <input
+              type="search"
+              placeholder="Buscar productos..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              aria-label="Buscar productos"
+            />
+            <button type="submit" aria-label="Buscar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </button>
+          </form>
+
+          <NavLink
             to={`/category/celular`} 
             className={({ isActive }) => isActive ? 'ActiveOption' : 'Option'}
             onClick={closeMenu}

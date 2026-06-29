@@ -1,13 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+/* ============================================
+   SISTEMA DE DISEÑO - Tokens globales
+   ============================================ */
+:root {
+  /* Marca */
+  --brand-1: #667eea;
+  --brand-2: #764ba2;
+  --brand-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --brand-gradient-soft: linear-gradient(135deg, #f5f7fa 0%, #e8ecff 100%);
+
+  /* Acentos */
+  --accent: #fdcb6e;
+  --accent-2: #ffeaa7;
+  --success: #48bb78;
+  --danger: #ee5a52;
+
+  /* Neutrales */
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --text: #1a202c;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+
+  /* Tipografía */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Poppins', var(--font-sans);
+
+  /* Radios y sombras */
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.14);
+  --shadow-brand: 0 8px 25px rgba(102, 126, 234, 0.35);
+
+  /* Layout */
+  --container: 1200px;
+  --nav-height: 70px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Scrollbar sutil acorde a la marca */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef1f8;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #9aa6f0, #a982cf);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+/* Utilidad: spinner reutilizable */
+.app-spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid rgba(102, 126, 234, 0.18);
+  border-top-color: var(--brand-1);
+  border-radius: 50%;
+  animation: app-spin 0.9s linear infinite;
+}
+
+@keyframes app-spin {
+  to { transform: rotate(360deg); }
 }
